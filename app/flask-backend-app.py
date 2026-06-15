@@ -24,4 +24,4 @@ def get_status():
 
 # 3. Run the development server
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
