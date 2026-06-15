@@ -51,5 +51,5 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f kubernetes/app-prod.yaml
-          kubectl rollout restart deployment/market-tracker-app
+          kubectl apply -f kubernetes/prod-flask-app.yaml
+          kubectl rollout restart deployment/threat-detection-app
