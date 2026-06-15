@@ -93,3 +93,20 @@ resource "aws_eks_node_group" "main" {
     aws_iam_role_policy_attachment.eks_ecr_policy
   ]
 }
+
+# 5. Access Entry for GitHub Actions
+resource "aws_eks_access_entry" "github_actions" {
+  cluster_name  = aws_eks_cluster.main.name
+  principal_arn = "arn:aws:iam::084000526807:user/github-threat-intelligience-actions-bot"
+  type          = "STANDARD"
+}
+
+resource "aws_eks_access_policy_association" "github_actions_admin" {
+  cluster_name  = aws_eks_cluster.main.name
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = "arn:aws:iam::084000526807:user/github-threat-intelligience-actions-bot"
+
+  access_scope {
+    type = "cluster"
+  }
+}
